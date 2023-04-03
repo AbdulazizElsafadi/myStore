@@ -1,1 +1,10 @@
-<p>product-item-detail works!</p>
+<div class="detail-container">
+  <img class="img" src="{{ productDetails.url }}" />
+  <div class="detail-item">
+    <h2>{{ productDetails.name }}</h2>
+    <p>{{ productDetails.price }}</p>
+    <input type="number" class="select-input" />
+    <button class="btn">Add to cart</button>
+    <a class="back-link" routerLink="/"> <- Back to Product list</a>
+  </div>
+</div>
