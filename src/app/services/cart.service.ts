@@ -46,4 +46,19 @@ export class CartService implements OnInit {
 
     return targetCart?.quantity as number;
   }
+
+  calcPrice(): number {
+    const totalPrice: number = this.carts.reduce(
+      (previousValue, currentValue) => {
+        return (
+          currentValue.productPrice * currentValue.quantity + previousValue
+        );
+      },
+      0
+    );
+
+    console.log('totalPrice:', totalPrice);
+
+    return totalPrice;
+  }
 }

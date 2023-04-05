@@ -16,8 +16,6 @@ export class CartComponent implements OnInit {
   carts: Cart[];
   products: Product[];
 
-  cartQuantity: number;
-
   constructor(
     private cartService: CartService,
     private productService: ProductsService
@@ -26,7 +24,6 @@ export class CartComponent implements OnInit {
     this.address = '';
     this.cardNumber = 0;
     this.carts = [];
-    this.cartQuantity = 0;
     this.products = [];
   }
 
@@ -35,13 +32,14 @@ export class CartComponent implements OnInit {
     this.productService.getProduct().subscribe((res) => (this.products = res));
   }
 
-  AddCart(productName: string): void {
-    console.log('add cart is executed');
+  AddCart(productName: string, quantity: number): void {
     const targetProduct = this.products.find(
       (product) => product.name === productName
     );
-    console.log('cartQuantity:', this.cartQuantity);
-    this.cartService.editCart(targetProduct as Product, this.cartQuantity);
-    this.cartQuantity = 0;
+    this.cartService.editCart(targetProduct as Product, quantity);
+  }
+
+  getTotalPrice(): number {
+    return this.cartService.calcPrice();
   }
 }

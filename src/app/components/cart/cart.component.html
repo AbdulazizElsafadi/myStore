@@ -11,9 +11,11 @@
             class="number-input"
             type="number"
             name="quantity"
-            [(ngModel)]="cartQuantity"
+            [(ngModel)]="cart.quantity"
             value="{{ cart.quantity }}"
-            (ngModelChange)="AddCart(cart.productName)"
+            (ngModelChange)="
+              [AddCart(cart.productName, cart.quantity), getTotalPrice()]
+            "
           />
         </p>
       </div>
@@ -38,3 +40,4 @@
     <button class="btn">Submit</button>
   </form>
 </div>
+<h1 style="text-align: center">Total: ${{ getTotalPrice() }}</h1>
