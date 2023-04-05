@@ -7,28 +7,43 @@ import { Product } from '../Models/Product';
 })
 export class CartService implements OnInit {
   carts: Cart[];
-  fullName: string;
-  address: string;
-  cardNumber: Number;
+
   constructor() {
     this.carts = [];
-    this.fullName = '';
-    this.address = '';
-    this.cardNumber = 0;
   }
+
+  // TODO: may not be needed
   ngOnInit(): void {}
 
-  addProduct(product: Product, quantity: number): void {
-    this.carts.map((cart) => {
-      cart.productName === product.name
-        ? (cart.quantity = quantity)
-        : this.carts.push({
-            productName: product.name,
-            productPrice: product.price,
-            quantity,
-          });
+  getCarts(): Cart[] {
+    return this.carts;
+  }
 
-      console.log('carts:', this.carts);
-    });
+  editCart(product: Product, quantity: number): void {
+    const targetCart = this.carts.find(
+      (cart) => cart.productName === product.name
+    );
+    targetCart
+      ? (targetCart.quantity = quantity)
+      : this.carts.push(this.addProduct(product, quantity));
+
+    console.log('carts:', this.carts);
+  }
+
+  private addProduct(product: Product, quantity: number): Cart {
+    return {
+      productName: product.name,
+      productPrice: product.price,
+      quantity,
+      url: product.url,
+    };
+  }
+
+  getQuantity(product: Product): number {
+    const targetCart = this.carts.find(
+      (cart) => cart.productName === product.name
+    );
+
+    return targetCart?.quantity as number;
   }
 }

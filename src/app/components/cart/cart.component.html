@@ -1,1 +1,40 @@
-<p>cart works!</p>
+<div class="cart-container">
+  <div class="cart-item-details" *ngFor="let cart of carts">
+    <div class="cart-item">
+      <img src="{{ cart.url }}" class="img" />
+      <div class="cart-panel">
+        <p>{{ cart.productName }}</p>
+        <p>{{ cart.productPrice }}</p>
+        <p>
+          Amount:
+          <input
+            class="number-input"
+            type="number"
+            name="quantity"
+            [(ngModel)]="cartQuantity"
+            value="{{ cart.quantity }}"
+            (ngModelChange)="AddCart(cart.productName)"
+          />
+        </p>
+      </div>
+    </div>
+  </div>
+  <form class="form-margin">
+    <div>
+      <p>Full Name</p>
+      <input type="text" />
+    </div>
+
+    <div>
+      <p>Address</p>
+      <input type="text" />
+    </div>
+
+    <div>
+      <p>Card Number</p>
+      <input type="text" />
+    </div>
+    <p>We'll never share your payment details with anyone else</p>
+    <button class="btn">Submit</button>
+  </form>
+</div>

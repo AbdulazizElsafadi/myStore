@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/Models/Product';
+import { CartService } from 'src/app/services/cart.service';
 import { ProductsService } from 'src/app/services/products.service';
 
 //this.productId = Number(this.route.snapshot.paramMap.get('id'));
@@ -13,9 +14,11 @@ import { ProductsService } from 'src/app/services/products.service';
 export class ProductItemDetailComponent implements OnInit {
   id: number;
   productDetails: Product;
+  cartQuantity: number;
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductsService
+    private productService: ProductsService,
+    private cartService: CartService
   ) {
     this.id = 0;
     this.productDetails = {
@@ -25,6 +28,7 @@ export class ProductItemDetailComponent implements OnInit {
       url: '',
       description: '',
     };
+    this.cartQuantity = 0;
   }
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id') as unknown as number;
@@ -32,6 +36,16 @@ export class ProductItemDetailComponent implements OnInit {
       this.productDetails = res.find(
         (product) => product.id == this.id
       ) as Product;
+      this.cartQuantity = this.getQuantity();
     });
+  }
+
+  getQuantity(): number {
+    return this.cartService.getQuantity(this.productDetails);
+  }
+
+  AddCart(): void {
+    this.cartService.editCart(this.productDetails, this.cartQuantity);
+    alert('item is added to cart');
   }
 }

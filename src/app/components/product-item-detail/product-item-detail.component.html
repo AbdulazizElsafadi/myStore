@@ -3,8 +3,16 @@
   <div class="detail-item">
     <h2>{{ productDetails.name }}</h2>
     <p>{{ productDetails.price }}</p>
-    <input type="number" class="select-input" />
-    <button class="btn">Add to cart</button>
+    <form (ngSubmit)="AddCart()">
+      <input
+        class="select-input"
+        type="number"
+        name="cartQuantity"
+        [(ngModel)]="cartQuantity"
+      />
+      <br />
+      <button class="btn" type="submit">Add to cart</button>
+    </form>
     <a class="back-link" routerLink="/"> <- Back to Product list</a>
   </div>
 </div>
