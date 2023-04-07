@@ -20,11 +20,18 @@ export class CartService implements OnInit {
   }
 
   editCart(product: Product, quantity: number): void {
+    if (quantity === undefined) quantity = 1;
+    if (quantity == 0) return;
     const targetCart = this.carts.find(
       (cart) => cart.productName === product.name
     );
+    console.log('targetCart:', targetCart);
     targetCart
-      ? (targetCart.quantity = quantity)
+      ? quantity <= 0
+        ? (this.carts = this.carts.filter(
+            (cart) => cart.productName !== targetCart.productName
+          ))
+        : (targetCart.quantity = quantity)
       : this.carts.push(this.addProduct(product, quantity));
 
     console.log('carts:', this.carts);
@@ -56,8 +63,6 @@ export class CartService implements OnInit {
       },
       0
     );
-
-    console.log('totalPrice:', totalPrice);
 
     return totalPrice;
   }

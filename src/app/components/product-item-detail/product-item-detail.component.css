@@ -22,13 +22,16 @@ img {
   margin-right: 128px;
 }
 .btn {
-  background-color: #33b5e5;
-  text-align: center;
+  background-color: #33b5e5; /* Blue */
+  border: none;
+  border-radius: 20px;
   color: white;
-  border-radius: 1px;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
   cursor: pointer;
-  width: 108px;
-  height: 25px;
 }
 .back-link {
   margin-top: 8px;

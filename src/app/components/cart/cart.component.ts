@@ -3,6 +3,7 @@ import { Cart } from 'src/app/Models/Cart';
 import { Product } from 'src/app/Models/Product';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductsService } from 'src/app/services/products.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart',
@@ -18,7 +19,8 @@ export class CartComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private productService: ProductsService
+    private productService: ProductsService,
+    private route: Router
   ) {
     this.fullName = '';
     this.address = '';
@@ -39,7 +41,15 @@ export class CartComponent implements OnInit {
     this.cartService.editCart(targetProduct as Product, quantity);
   }
 
+  getCarts(): void {
+    this.carts = this.cartService.getCarts();
+  }
+
   getTotalPrice(): number {
     return this.cartService.calcPrice();
+  }
+
+  handleSubmit(): void {
+    this.route.navigate(['conformation']);
   }
 }

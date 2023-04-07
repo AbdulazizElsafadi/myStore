@@ -19,11 +19,14 @@
 }
 
 .btn {
-  background-color: #33b5e5;
-  text-align: center;
+  background-color: #33b5e5; /* Blue */
+  border: none;
+  border-radius: 20px;
   color: white;
-  border-radius: 1px;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
   cursor: pointer;
-  width: 108px;
-  height: 25px;
 }

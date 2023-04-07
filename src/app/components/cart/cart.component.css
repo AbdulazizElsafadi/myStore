@@ -50,5 +50,6 @@ img {
 .empty-cart-message {
   display: flex;
   justify-content: center;
-  margin-top: 64px;
+  align-items: center;
+  margin-top: 128px;
 }
