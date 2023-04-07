@@ -1,19 +1,16 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Cart } from '../Models/Cart';
 import { Product } from '../Models/Product';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CartService implements OnInit {
+export class CartService {
   carts: Cart[];
 
   constructor() {
     this.carts = [];
   }
-
-  // TODO: may not be needed
-  ngOnInit(): void {}
 
   getCarts(): Cart[] {
     return this.carts;
@@ -25,7 +22,6 @@ export class CartService implements OnInit {
     const targetCart = this.carts.find(
       (cart) => cart.productName === product.name
     );
-    console.log('targetCart:', targetCart);
     targetCart
       ? quantity <= 0
         ? (this.carts = this.carts.filter(
@@ -33,8 +29,6 @@ export class CartService implements OnInit {
           ))
         : (targetCart.quantity = quantity)
       : this.carts.push(this.addProduct(product, quantity));
-
-    console.log('carts:', this.carts);
   }
 
   private addProduct(product: Product, quantity: number): Cart {
