@@ -83,6 +83,7 @@
           minlength="16"
           maxlength="16"
           #cardNumber="ngModel"
+          (keypress)="OnlyNumbersAllowed($event)"
         />
         <br />
         <span

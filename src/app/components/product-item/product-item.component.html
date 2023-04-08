@@ -4,22 +4,24 @@
   /></a>
   <p>{{ product.name }}</p>
   <p>${{ product.price }}</p>
-  <form (ngSubmit)="AddCart()">
-    <select
-      class="select-input"
-      name="number"
-      type="text"
-      [(ngModel)]="cartQuantity"
+  <!-- <form (ngSubmit)="AddCart()"> -->
+  <select
+    class="select-input"
+    name="number"
+    type="text"
+    [(ngModel)]="productQuantity"
+  >
+    <option
+      *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+      value="{{ i }}"
     >
-      <option
-        *ngFor="let i of [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
-        value="{{ i }}"
-      >
-        {{ i }}
-      </option>
-    </select>
+      {{ i }}
+    </option>
+  </select>
 
-    <br />
-    <button class="btn" type="submit">Add to cart</button>
-  </form>
+  <br />
+  <button class="btn" (click)="addProduct.emit(productQuantity)" type="submit">
+    Add to cart
+  </button>
+  <!-- </form> -->
 </div>

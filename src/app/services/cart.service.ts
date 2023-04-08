@@ -18,7 +18,6 @@ export class CartService {
 
   editCart(product: Product, quantity: number): void {
     if (quantity === undefined) quantity = 1;
-    if (quantity == 0) return;
     const targetCart = this.carts.find(
       (cart) => cart.productName === product.name
     );

@@ -39,6 +39,7 @@ export class CartComponent implements OnInit {
       (product) => product.name === productName
     );
     this.cartService.editCart(targetProduct as Product, quantity);
+    if (quantity == 0) alert('item is removed from the cart');
   }
 
   getCarts(): void {
@@ -51,5 +52,11 @@ export class CartComponent implements OnInit {
 
   handleSubmit(): void {
     this.route.navigate(['conformation']);
+  }
+
+  OnlyNumbersAllowed(event: KeyboardEvent): boolean {
+    const charCode = event.which ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
+    else return true;
   }
 }
