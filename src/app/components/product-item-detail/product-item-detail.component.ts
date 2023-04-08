@@ -46,8 +46,12 @@ export class ProductItemDetailComponent implements OnInit {
 
   AddCart(): void {
     this.cartService.editCart(this.productDetails, this.cartQuantity);
-    alert(
-      `${this.cartQuantity ? this.cartQuantity : 1} item(s) is added to cart`
-    );
+    this.cartQuantity == 0
+      ? alert('item is removed from the cart')
+      : alert(
+          `${
+            this.cartQuantity ? this.cartQuantity : 1
+          } item(s) is added to cart`
+        );
   }
 }

@@ -24,9 +24,9 @@ export class ProductListComponent implements OnInit {
   }
 
   AddCart(product: Product, quantity: number): void {
-    console.log('product:', product);
-    console.log('quantity:', quantity);
     this.cartService.editCart(product, quantity);
-    alert(`${quantity ? quantity : 1} item(s) is added to cart`);
+    quantity == 0
+      ? alert('item is removed from the cart')
+      : alert(`${quantity ? quantity : 1} item(s) is added to cart`);
   }
 }
